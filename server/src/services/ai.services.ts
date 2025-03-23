@@ -2,7 +2,7 @@ import redis from "../config/redis";
 import { getDocument } from "pdfjs-dist";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const AI_MODEL = "gemini-pro";
+const AI_MODEL = "gemini-1.5-pro";
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 const aiModel = genAI.getGenerativeModel({ model: AI_MODEL });
 
@@ -56,9 +56,18 @@ export const detectContractType = async (
     ${contractText.substring(0, 2000)}
   `;
 
-  const results = await aiModel.generateContent(prompt);
-  const response = results.response;
-  return response.text().trim();
+  try {
+    const results = await aiModel.generateContent(prompt);
+    const response = results.response;
+    return response.text().trim();
+  } catch (error) {
+    console.error("Error detecting contract type:", error);
+    if (error instanceof Error) {
+      throw new Error(`Failed to detect contract type: ${error.message}`);
+    } else {
+      throw new Error("Failed to detect contract type: Unknown error");
+    }
+  }
 };
 
 export const analyzeContractWithAI = async (
