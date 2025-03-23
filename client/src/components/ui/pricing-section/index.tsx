@@ -7,8 +7,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card";
-import { Button } from "./ui/button";
+} from "../card";
+import { Button } from "../button";
+import { freeFeatures, premiumFeatures } from "./data";
+import { PricingCardProps } from "./types";
 
 export function PricingSection() {
   const handleUpgrade = async () => {
@@ -26,62 +28,29 @@ export function PricingSection() {
   return (
     <div className="container mx-auto px-4 py-16 bg-gradient-to-b from-background to-background/80">
       <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-center">
-        Choose the plan that&apos;s right for you
+        Escolha o plano ideal para você
       </h2>
       <p className="text-lg text-muted-foreground mt-4 text-center max-w-3xl mx-auto">
-        Select the perfect plan for your needs. Upgrade anytime to unlock
-        premium features and support.
+        Selecione o plano perfeito para suas necessidades. Faça upgrade a qualquer momento para 
+        desbloquear recursos e suporte premium.
       </p>
       <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         <PricingCard
-          title="Basic"
-          description="For comprehensive contract analysis"
-          price="Free"
-          period="/lifetime"
-          features={[
-            "Advanced contract analysis",
-            "Unlimited projects",
-            "Chat with your contract",
-            "10+ risks with severity levels",
-            "10+ opportunities with impact levels",
-            "Comprehensive contract summary",
-            "Improvement recommendations",
-            "Key clauses identification",
-            "Legal compliance assessment",
-            "Negotiation points",
-            "Contract duration analysis",
-            "Termination conditions summary",
-            "Compensation structure breakdown",
-            "Performance metrics identification",
-            "Intellectual property clause summary",
-          ]}
-          buttonText="Upgrade"
+          title="Básico"
+          description="Para análise abrangente de contratos"
+          price="Grátis"
+          features={freeFeatures}
+          buttonText="Fazer Upgrade"
           onButtonClick={handleUpgrade}
         />
         <PricingCard
           title="Premium"
-          description="For comprehensive contract analysis"
-          price="$100"
+          description="Para análise abrangente de contratos"
+          price="R$100"
           highlight
-          period="/lifetime"
-          features={[
-            "Advanced contract analysis",
-            "Unlimited projects",
-            "Chat with your contract",
-            "10+ risks with severity levels",
-            "10+ opportunities with impact levels",
-            "Comprehensive contract summary",
-            "Improvement recommendations",
-            "Key clauses identification",
-            "Legal compliance assessment",
-            "Negotiation points",
-            "Contract duration analysis",
-            "Termination conditions summary",
-            "Compensation structure breakdown",
-            "Performance metrics identification",
-            "Intellectual property clause summary",
-          ]}
-          buttonText="Upgrade"
+          period="/mês"
+          features={premiumFeatures}
+          buttonText="Fazer Upgrade"
           onButtonClick={handleUpgrade}
         />
       </div>
@@ -89,16 +58,7 @@ export function PricingSection() {
   );
 }
 
-interface PricingCardProps {
-  title: string;
-  description: string;
-  price: string;
-  period: string;
-  features: string[];
-  buttonText: string;
-  highlight?: boolean;
-  onButtonClick: () => void;
-}
+
 
 function PricingCard({
   title,
@@ -125,9 +85,9 @@ function PricingCard({
       <CardContent className="flex-grow">
         <p className="text-5xl font-extrabold mb-6">
           {price}
-          <span className="text-base font-normal text-muted-foreground">
+          {period && <span className="text-base font-normal text-muted-foreground">
             {period}
-          </span>
+          </span>}
         </p>
         <ul className="space-y-2">
           {features.map((feature, index) => (
