@@ -11,6 +11,7 @@ import {
 import { Button } from "../button";
 import { freeFeatures, premiumFeatures } from "./data";
 import { PricingCardProps } from "./types";
+import { Check } from "lucide-react";
 
 export function PricingSection() {
   const handleUpgrade = async () => {
@@ -26,26 +27,27 @@ export function PricingSection() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-16 bg-gradient-to-b from-background to-background/80">
-      <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-center">
+    <div className="container flex flex-col gap-8 px-4 py-16 bg-gradient-to-b from-background to-background/80">
+      <div>
+        <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-center">
         Escolha o plano ideal para você
       </h2>
-      <p className="text-lg text-muted-foreground mt-4 text-center max-w-3xl mx-auto">
-        Selecione o plano perfeito para suas necessidades. Faça upgrade a qualquer momento para 
-        desbloquear recursos e suporte premium.
-      </p>
+        <p className="text-lg text-muted-foreground mt-4 text-center max-w-3xl mx-auto">
+          Selecione o plano perfeito para suas necessidades. Faça upgrade a qualquer momento para
+          desbloquear recursos e suporte premium.
+        </p></div>
       <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         <PricingCard
           title="Básico"
-          description="Para análise abrangente de contratos"
-          price="Grátis"
+          description="Perfeito para iniciantes"
+          price="R$0"
           features={freeFeatures}
-          buttonText="Fazer Upgrade"
+          buttonText="Conhecer"
           onButtonClick={handleUpgrade}
         />
         <PricingCard
           title="Premium"
-          description="Para análise abrangente de contratos"
+          description="Para análise inteligente de contratos"
           price="R$100"
           highlight
           period="/mês"
@@ -72,9 +74,8 @@ function PricingCard({
 }: PricingCardProps) {
   return (
     <Card
-      className={`flex flex-col ${
-        highlight ? "border-primary shadow-lg" : ""
-      } relative overflow-hidden transition-all duration-300`}
+      className={`flex flex-col ${highlight ? "border-primary shadow-lg" : ""
+        } relative overflow-hidden transition-all duration-300`}
     >
       <CardHeader>
         <CardTitle className="text-2xl flex items-center gap-2">
@@ -92,6 +93,7 @@ function PricingCard({
         <ul className="space-y-2">
           {features.map((feature, index) => (
             <li className="flex items-center gap-2" key={index}>
+              <Check className="h-4 w-4 text-primary" />
               {feature}
             </li>
           ))}
