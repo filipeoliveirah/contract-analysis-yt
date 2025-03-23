@@ -16,34 +16,34 @@ import { Card, CardContent } from "./ui/card";
 
 const features = [
   {
-    title: "AI-powered Analysis",
+    title: "Análise com IA",
     description:
-      "Leverage advanced AI to analyze contracts quickly and accurately.",
+      "Utilize IA avançada para analisar contratos de forma rápida e precisa.",
     icon: FileSearch,
   },
   {
-    title: "Risk Identification",
-    description: "Spot potential risks and opportunities in your contracts.",
+    title: "Identificação de Riscos",
+    description: "Identifique potenciais riscos e oportunidades em seus contratos.",
     icon: ShieldCheck,
   },
   {
-    title: "Streamlined Negotiation",
-    description: "Accelerate the negotiation process with AI-driven insights.",
+    title: "Negociação Simplificada",
+    description: "Acelere o processo de negociação com insights baseados em IA.",
     icon: Hourglass,
   },
   {
-    title: "Cost Reduction",
-    description: "Significantly reduce legal costs through automation.",
+    title: "Redução de Custos",
+    description: "Reduza significativamente os custos legais através da automação.",
     icon: PiggyBank,
   },
   {
-    title: "Improved Compliance",
-    description: "Ensure your contracts meet all regulatory requirements.",
+    title: "Conformidade Aprimorada",
+    description: "Garanta que seus contratos atendam a todos os requisitos regulatórios.",
     icon: Scale,
   },
   {
-    title: "Faster Turnaround",
-    description: "Complete contract reviews in minutes instead of hours.",
+    title: "Resposta mais Rápida",
+    description: "Complete revisões de contratos em minutos, em vez de horas.",
     icon: Zap,
   },
 ];
@@ -62,22 +62,22 @@ export function HeroSection() {
           <span className="mr-3 hidden md:block">
             <Sparkles className="size-3.5" />
           </span>
-          Introducing Simple Metrics for your team
+          Métricas inteligentes para contratos de sucesso
         </Link>
         <div className="text-center mb-12 w-full">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl xl:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary mb-4">
-            Revoltionzie Your Contracts
+            Revolucione Seus Contratos utilizando IA
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Harness the power of AI to analyze, understand, and optimize your
-            contracts in no time.
+            Aproveite o poder da IA para analisar, entender e otimizar seus
+            contratos em pouco tempo.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button
               className="inline-flex items-center justify-center text-lg"
               size={"lg"}
             >
-              Get Started
+              Começar
               <ArrowRight className="ml-2 size-5" />
             </Button>
             <Button
@@ -85,7 +85,7 @@ export function HeroSection() {
               size={"lg"}
               variant={"outline"}
             >
-              Learn More
+              Saiba Mais
               <Globe className="ml-2 size-5" />
             </Button>
           </div>
