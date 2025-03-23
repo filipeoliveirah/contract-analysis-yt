@@ -31,16 +31,16 @@ export default function ContractAnalysisResults({
   const [activeTab, setActiveTab] = useState("summary");
 
   if (!analysisResults) {
-    return <div>No results</div>;
+    return <div>Sem resultados</div>;
   }
 
   const getScore = () => {
     const score = analysisResults.overallScore; //analysisResults.overallScore ||
     if (score > 70)
-      return { icon: ArrowUp, color: "text-green-500", text: "Good" };
+      return { icon: ArrowUp, color: "text-green-500", text: "Bom" };
     if (score < 50)
-      return { icon: ArrowDown, color: "text-red-500", text: "Bad" };
-    return { icon: Minus, color: "text-yellow-500", text: "Average" };
+      return { icon: ArrowDown, color: "text-red-500", text: "Ruim" };
+    return { icon: Minus, color: "text-yellow-500", text: "Médio" };
   };
 
   const scoreTrend = getScore();
@@ -79,9 +79,9 @@ export default function ContractAnalysisResults({
   ) => {
     const displayItems = isActive ? items : items.slice(0, 3);
     const fakeItems = {
-      risk: type === "risks" ? "Hidden Risk" : undefined,
-      opportunity: type === "opportunities" ? "Hidden Opportunity" : undefined,
-      explanation: "Hidden Explanation",
+      risk: type === "risks" ? "Risco Oculto" : undefined,
+      opportunity: type === "opportunities" ? "Oportunidade Oculta" : undefined,
+      explanation: "Explicação Oculta",
       severity: "low",
       impact: "low",
     };
@@ -147,7 +147,7 @@ export default function ContractAnalysisResults({
       <div className="relative">
         <div className="absolute inset-0 bg-white/50 backdrop-blur-sm z-50 flex items-center justify-center">
           <Button onClick={onUpgrade} variant={"outline"}>
-            Upgrade to Premium
+            Atualize para Premium
           </Button>
         </div>
         <div className="opacity-50">{content}</div>
@@ -158,15 +158,15 @@ export default function ContractAnalysisResults({
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Analysis Results</h1>
-        <div className="flex space-x-2">{/* ASK AI BUTTON */}</div>
+        <h1 className="text-3xl font-bold">Resultados da Análise</h1>
+        <div className="flex space-x-2">{/* BOTÃO PERGUNTAR AO AI */}</div>
       </div>
 
       <Card className="mb-6">
         <CardHeader>
-          <CardTitle>Overal Contract Score</CardTitle>
+          <CardTitle>Pontuação Geral do Contrato</CardTitle>
           <CardDescription>
-            Based on risks and opportunities identified
+            Baseado nos riscos e oportunidades identificados
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -183,17 +183,16 @@ export default function ContractAnalysisResults({
               </div>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span>Risk</span>
+                  <span>Risco</span>
                   <span>{100 - analysisResults.overallScore}%</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span>Opportunities</span>
+                  <span>Oportunidades</span>
                   <span>{analysisResults.overallScore}%</span>
                 </div>
               </div>
               <p className="text-sm text-gray-600 mt-4">
-                This score represents the overall risk and opportunitys
-                identified in the contract.
+                Esta pontuação representa os riscos e oportunidades gerais identificados no contrato.
               </p>
             </div>
 
@@ -210,15 +209,15 @@ export default function ContractAnalysisResults({
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
         <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="summary">Summary</TabsTrigger>
-          <TabsTrigger value="risks">Risks</TabsTrigger>
-          <TabsTrigger value="opportunities">Opportunities</TabsTrigger>
-          <TabsTrigger value="details">Details</TabsTrigger>
+          <TabsTrigger value="summary">Resumo</TabsTrigger>
+          <TabsTrigger value="risks">Riscos</TabsTrigger>
+          <TabsTrigger value="opportunities">Oportunidades</TabsTrigger>
+          <TabsTrigger value="details">Detalhes</TabsTrigger>
         </TabsList>
         <TabsContent value="summary">
           <Card>
             <CardHeader>
-              <CardTitle>Contract Summary</CardTitle>
+              <CardTitle>Resumo do Contrato</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-lg leading-relaxed">
@@ -230,13 +229,13 @@ export default function ContractAnalysisResults({
         <TabsContent value="risks">
           <Card>
             <CardHeader>
-              <CardTitle>Risks</CardTitle>
+              <CardTitle>Riscos</CardTitle>
             </CardHeader>
             <CardContent>
               {renderRisksAndOpportunities(analysisResults.risks, "risks")}
               {!isActive && (
                 <p className="mt-4 text-center text-sm text-gray-500">
-                  Upgrade to Premium to see all risks
+                  Atualize para Premium para ver todos os riscos
                 </p>
               )}
             </CardContent>
@@ -245,7 +244,7 @@ export default function ContractAnalysisResults({
         <TabsContent value="opportunities">
           <Card>
             <CardHeader>
-              <CardTitle>Opportunities</CardTitle>
+              <CardTitle>Oportunidades</CardTitle>
             </CardHeader>
             <CardContent>
               {renderRisksAndOpportunities(
@@ -254,7 +253,7 @@ export default function ContractAnalysisResults({
               )}
               {!isActive && (
                 <p className="mt-4 text-center text-sm text-gray-500">
-                  Upgrade to Premium to see all opportunities
+                  Atualize para Premium para ver todas as oportunidades
                 </p>
               )}
             </CardContent>
@@ -265,7 +264,7 @@ export default function ContractAnalysisResults({
             <div className="grid md:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Contract Details</CardTitle>
+                  <CardTitle>Detalhes do Contrato</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
@@ -279,7 +278,7 @@ export default function ContractAnalysisResults({
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>Recommdations</CardTitle>
+                  <CardTitle>Recomendações</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
@@ -297,19 +296,18 @@ export default function ContractAnalysisResults({
           ) : (
             <Card>
               <CardHeader>
-                <CardTitle>Contract Details</CardTitle>
+                <CardTitle>Detalhes do Contrato</CardTitle>
               </CardHeader>
               <CardContent>
                 <p>
-                  Upgrade to Premium to see contract detailed analysis,
-                  including key clauses and recommendations.
+                  Atualize para Premium para ver a análise detalhada do contrato, incluindo cláusulas principais e recomendações.
                 </p>
                 <Button
                   variant={"outline"}
                   onClick={onUpgrade}
                   className="mt-4"
                 >
-                  Upgrade to Premium
+                  Atualize para Premium
                 </Button>
               </CardContent>
             </Card>
@@ -321,21 +319,21 @@ export default function ContractAnalysisResults({
         {renderPremiumAccordition(
           <>
             <AccordionItem value="contract-details">
-              <AccordionTrigger>Contract Details</AccordionTrigger>
+              <AccordionTrigger>Detalhes do Contrato</AccordionTrigger>
               <AccordionContent>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <h3 className="font-semibold mb-2">
-                      Duration and Termination
+                      Duração e Rescisão
                     </h3>
                     <p>{analysisResults.contractDuration}</p>
-                    <strong>Termination Conditions</strong>
+                    <strong>Condições de Rescisão</strong>
                     <p>{analysisResults.terminationConditions}</p>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2">Legal Informatiob</h3>
+                    <h3 className="font-semibold mb-2">Informações Legais</h3>
                     <p>
-                      <strong>Legal Compliance</strong>
+                      <strong>Conformidade Legal</strong>
                       {analysisResults.legalCompliance}
                     </p>
                   </div>
@@ -348,7 +346,7 @@ export default function ContractAnalysisResults({
 
       <Card>
         <CardHeader>
-          <CardTitle>Negotiation Points</CardTitle>
+          <CardTitle>Pontos de Negociação</CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="grid md:grid-cols-2 gap-2">
