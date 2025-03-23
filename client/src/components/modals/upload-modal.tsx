@@ -63,7 +63,7 @@ export function UploadModal({
     },
     onError: (error) => {
       console.error(error);
-      setError("Failed to detect contract type");
+      setError("Falha ao detectar tipo de contrato");
       setStep("upload");
     },
   });
@@ -96,7 +96,7 @@ export function UploadModal({
     },
     onError: (error) => {
       console.error(error);
-      setError("Failed to upload contract");
+      setError("Falha ao fazer upload do contrato");
       setStep("upload");
     },
   });
@@ -107,7 +107,7 @@ export function UploadModal({
       setError(null);
       setStep("upload");
     } else {
-      setError("No file selected");
+      setError("Nenhum arquivo selecionado");
     }
   }, []);
 
@@ -151,7 +151,7 @@ export function UploadModal({
               <div
                 {...getRootProps()}
                 className={cn(
-                  "border-2 border-dashed rounded-lg p-8 mt-8 mb-4 text-center transition-colors",
+                  "border-2 cursor-pointer border-dashed rounded-lg p-8 mt-8 mb-4 text-center transition-colors",
                   isDragActive
                     ? "border-primary bg-primary/10"
                     : "border-gray-300 hover:border-gray-400"
@@ -162,11 +162,11 @@ export function UploadModal({
                   <FileText className="mx-auto size-16 text-primary" />
                 </motion.div>
                 <p className="mt-4 text-sm text-gray-600">
-                  Drag &apos;n&apos; drop some files here, or click to select
-                  files
+                  Arraste e solte arquivos aqui, ou clique para selecionar
+                  arquivos
                 </p>
                 <p className="bg-yellow-500/30 border border-yellow-500 border-dashed text-yellow-700 p-2 rounded mt-2">
-                  Note: Only PDF files are accepted
+                  Nota: Apenas arquivos PDF são aceitos
                 </p>
               </div>
               {files.length > 0 && (
@@ -190,7 +190,7 @@ export function UploadModal({
               {files.length > 0 && !isProcessing && (
                 <Button className="mt-4 w-full mb-4" onClick={handleFileUpload}>
                   <Sparkles className="mr-2 size-4" />
-                  Analyze Contract With AI
+                  Analisar Contrato Com IA
                 </Button>
               )}
             </motion.div>
@@ -203,7 +203,7 @@ export function UploadModal({
             <motion.div className="flex flex-col items-center justify-center py-8">
               <Loader2 className="size-16 animate-spin text-primary" />
               <p className="mt-4 text-lg font-semibold">
-                Detecting contract type...
+                Detectando tipo de contrato...
               </p>
             </motion.div>
           </AnimatePresence>
@@ -215,21 +215,21 @@ export function UploadModal({
             <motion.div>
               <div className="flex flex-col space-y-4 mb-4">
                 <p>
-                  We have detected the following contract type:
+                  Detectamos o seguinte tipo de contrato:
                   <span className="font-semibold"> {detectedType}</span>
                 </p>
-                <p>Would you like to analyze this contract with our AI?</p>
+                <p>Gostaria de analisar este contrato com nossa IA?</p>
               </div>
               <div className="flex space-x-4">
                 <Button onClick={handleAnalyzeContract}>
-                  Yes, I want to analyze it
+                  Sim, quero analisar
                 </Button>
                 <Button
                   onClick={() => setStep("upload")}
                   variant={"outline"}
                   className="flex-1"
                 >
-                  No, Try another file
+                  Não, tentar outro arquivo
                 </Button>
               </div>
             </motion.div>
@@ -264,7 +264,7 @@ export function UploadModal({
                 transition={{ delay: 0.5 }}
                 className="mt-6 text-lg font-semibold text-gray-700"
               >
-                AI is analyzing your contract...
+                A IA está analisando seu contrato...
               </motion.p>
               <motion.p
                 initial={{ opacity: 0 }}
@@ -272,7 +272,7 @@ export function UploadModal({
                 transition={{ delay: 1 }}
                 className="mt-2 text-sm text-gray-700"
               >
-                This may take some time.
+                Isso pode levar algum tempo.
               </motion.p>
               <motion.div
                 className="w-64 h-2 bg-gray-200 rounded-full mt-6 overflow-hidden"
@@ -296,18 +296,18 @@ export function UploadModal({
           <AnimatePresence>
             <motion.div>
               <Alert className="mt-4">
-                <AlertTitle>Analysis completed</AlertTitle>
+                <AlertTitle>Análise concluída</AlertTitle>
                 <AlertDescription>
-                  Your contract has been analyzed. you can now view the results
+                  Seu contrato foi analisado. Agora você pode visualizar os resultados
                 </AlertDescription>
               </Alert>
 
               <motion.div className="mt-6 flex flex-col space-y-3 relative">
                 <Button onClick={() => router.push(`/dashboard/results`)}>
-                  View results
+                  Ver resultados
                 </Button>
                 <Button variant={"outline"} onClick={handleClose}>
-                  Close
+                  Fechar
                 </Button>
               </motion.div>
             </motion.div>
